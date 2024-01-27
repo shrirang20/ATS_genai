@@ -1,4 +1,5 @@
-streamlit
-google-generativeai
-python-dotenv
-pdf2image
+pdf2image==1.17.0
+Pillow==10.2.0
+protobuf==4.25.2
+python-dotenv==1.0.1
+streamlit==1.30.0
