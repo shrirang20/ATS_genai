@@ -1,0 +1,10 @@
+prefix=s:/Project/ATS Tracker/venv/Library
+libdir=s:/Project/ATS Tracker/venv/Library/lib
+includedir=s:/Project/ATS Tracker/venv/Library/include
+
+Name: poppler
+Description: PDF rendering library
+Version: 22.12.0
+
+Libs: -L${libdir} -lpoppler
+Cflags: -I${includedir}/poppler

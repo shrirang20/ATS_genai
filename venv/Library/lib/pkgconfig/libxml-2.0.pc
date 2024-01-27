@@ -1,0 +1,11 @@
+prefix=s:/Project/ATS Tracker/venv/Library 
+exec_prefix=s:/Project/ATS Tracker/venv/Library 
+libdir=s:/Project/ATS Tracker/venv/Library/lib 
+includedir=s:/Project/ATS Tracker/venv/Library/include 
+modules=0 
+Name: libXML 
+Version: 2.10.4 
+Description: libXML library version2. 
+Requires: 
+Libs: -Ls:/Project/ATS Tracker/venv/Library/lib -lxml2 -liconv -lz 
+Cflags: -Is:/Project/ATS Tracker/venv/Library/include/libxml 

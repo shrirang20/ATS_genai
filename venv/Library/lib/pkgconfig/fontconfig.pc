@@ -1,0 +1,16 @@
+prefix=s:/Project/ATS Tracker/venv/Library
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+sysconfdir=s:/Project/ATS Tracker/venv/Library/etc
+localstatedir=s:/Project/ATS Tracker/venv/Library/var
+confdir=${sysconfdir}/fonts
+cachedir=${localstatedir}/cache/fontconfig
+
+Name: Fontconfig
+Description: Font configuration and customization library
+Version: 2.14.1
+Requires: freetype2 >=  21.0.15
+Libs: -L${libdir} -lfontconfig
+Libs.private: s:/Project/ATS Tracker/venv/Library/lib/expat.lib
+Cflags: -I${includedir}
