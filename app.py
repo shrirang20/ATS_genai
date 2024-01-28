@@ -10,11 +10,11 @@ from PIL import Image
 import pdf2image
 import google.generativeai as genai
 import sqlite3
-import logging
+# import logging
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-logging.basicConfig(level=logging.DEBUG)
+# logging.basicConfig(level=logging.DEBUG)
 
 
 def get_gemini_response(input,pdf_content,prompt):
@@ -59,7 +59,7 @@ def input_pdf_setup(uploaded_file):
                 "data": base64.b64encode(img_byte_arr).decode()
             }
         ]
-        logging.debug(f"Poppler path: {poppler_path}")
+        # logging.debug(f"Poppler path: {poppler_path}")
         return pdf_parts
     else:
         raise FileNotFoundError("No file uploaded")
