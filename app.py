@@ -40,7 +40,7 @@ def store_data(input_text, pdf_content):
 
 def input_pdf_setup(uploaded_file):
     if uploaded_file is not None:
-        poppler_path="venv/Library/Library/bin"
+        poppler_path="./venv/Library/Library/bin" 
         images=pdf2image.convert_from_bytes(uploaded_file.read(), poppler_path=poppler_path)
 
         first_page=images[0]
