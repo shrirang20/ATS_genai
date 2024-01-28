@@ -1,12 +1,12 @@
-prefix=%LIBRARY_PREFIX%
-libdir=%LIBRARY_LIB%
-includedir=%LIBRARY_PREFIX%/include
+prefix=s:/Project/ATS Tracker/venv/Library
+libdir=s:/Project/ATS Tracker/venv/Library/lib
+includedir=s:/Project/ATS Tracker/venv/Library/include
 
 Name: poppler-cpp
 Description: cpp backend for Poppler PDF rendering library
-Version: 22.12.0
+Version: 23.03.0
 Requires: 
-Requires.private: poppler = 22.12.0
+Requires.private: poppler = 23.03.0
 
 Libs: -L${libdir} -lpoppler-cpp
 Cflags: -I${includedir}/poppler/cpp

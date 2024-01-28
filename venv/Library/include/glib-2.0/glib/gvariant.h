@@ -2,6 +2,8 @@
  * Copyright © 2007, 2008 Ryan Lortie
  * Copyright © 2009, 2010 Codethink Limited
  *
+ * SPDX-License-Identifier: LGPL-2.1-or-later
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -268,7 +270,7 @@ GVariant *                      g_variant_new_from_data                 (const G
 typedef struct _GVariantIter GVariantIter;
 struct _GVariantIter {
   /*< private >*/
-  gsize x[16];
+  guintptr x[16];
 };
 
 GLIB_AVAILABLE_IN_ALL
@@ -302,9 +304,9 @@ struct _GVariantBuilder {
     struct {
       gsize partial_magic;
       const GVariantType *type;
-      gsize y[14];
+      guintptr y[14];
     } s;
-    gsize x[16];
+    guintptr x[16];
   } u;
 };
 
@@ -362,7 +364,14 @@ GQuark                          g_variant_parse_error_quark             (void);
  *
  * Since: 2.50
  */
-#define G_VARIANT_BUILDER_INIT(variant_type) { { { 2942751021u, variant_type, { 0, } } } }
+#define G_VARIANT_BUILDER_INIT(variant_type)                                          \
+  {                                                                                   \
+    {                                                                                 \
+      {                                                                               \
+        2942751021u /* == GVSB_MAGIC_PARTIAL, see gvariant.c */, variant_type, { 0, } \
+      }                                                                               \
+    }                                                                                 \
+  }
 
 GLIB_AVAILABLE_IN_ALL
 GVariantBuilder *               g_variant_builder_new                   (const GVariantType   *type);
@@ -444,9 +453,9 @@ struct _GVariantDict {
     struct {
       GVariant *asv;
       gsize partial_magic;
-      gsize y[14];
+      guintptr y[14];
     } s;
-    gsize x[16];
+    guintptr x[16];
   } u;
 };
 
@@ -478,7 +487,14 @@ struct _GVariantDict {
  *
  * Since: 2.50
  */
-#define G_VARIANT_DICT_INIT(asv) { { { asv, 3488698669u, { 0, } } } }
+#define G_VARIANT_DICT_INIT(asv)                                             \
+  {                                                                          \
+    {                                                                        \
+      {                                                                      \
+        asv, 3488698669u /* == GVSD_MAGIC_PARTIAL, see gvariant.c */, { 0, } \
+      }                                                                      \
+    }                                                                        \
+  }
 
 GLIB_AVAILABLE_IN_2_40
 GVariantDict *                  g_variant_dict_new                      (GVariant             *from_asv);

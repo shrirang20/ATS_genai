@@ -30,6 +30,8 @@ from . import dbustypes
 from . import parser
 from . import codegen
 from . import codegen_docbook
+from . import codegen_md
+from . import codegen_rst
 from .utils import print_error, print_warning
 
 
@@ -117,7 +119,7 @@ def apply_annotation(iface_list, iface, method, signal, prop, arg, key, value):
 
 def apply_annotations(iface_list, annotation_list):
     # apply annotations given on the command line
-    for (what, key, value) in annotation_list:
+    for what, key, value in annotation_list:
         pos = what.find("::")
         if pos != -1:
             # signal
@@ -212,6 +214,16 @@ def codegen_main():
         help="Generate Docbook in OUTFILES-org.Project.IFace.xml",
     )
     arg_parser.add_argument(
+        "--generate-md",
+        metavar="OUTFILES",
+        help="Generate Markdown in OUTFILES-org.Project.IFace.md",
+    )
+    arg_parser.add_argument(
+        "--generate-rst",
+        metavar="OUTFILES",
+        help="Generate reStructuredText in OUTFILES-org.Project.IFace.rst",
+    )
+    arg_parser.add_argument(
         "--pragma-once",
         action="store_true",
         help='Use "pragma once" as the inclusion guard',
@@ -287,10 +299,13 @@ def codegen_main():
         )
 
     if (
-        args.generate_c_code is not None or args.generate_docbook is not None
+        args.generate_c_code is not None
+        or args.generate_docbook is not None
+        or args.generate_md is not None
+        or args.generate_rst is not None
     ) and args.output is not None:
         print_error(
-            "Using --generate-c-code or --generate-docbook and "
+            "Using --generate-c-code or --generate-{docbook,md,rst} and "
             "--output at the same time is not allowed"
         )
 
@@ -419,6 +434,16 @@ def codegen_main():
     docbook_gen = codegen_docbook.DocbookCodeGenerator(all_ifaces)
     if docbook:
         docbook_gen.generate(docbook, args.output_directory)
+
+    md = args.generate_md
+    md_gen = codegen_md.MdCodeGenerator(all_ifaces)
+    if md:
+        md_gen.generate(md, args.output_directory)
+
+    rst = args.generate_rst
+    rst_gen = codegen_rst.RstCodeGenerator(all_ifaces)
+    if rst:
+        rst_gen.generate(rst, args.output_directory)
 
     if args.header:
         with open(h_file, "w") as outfile:

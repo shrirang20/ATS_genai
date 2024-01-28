@@ -1,8 +1,8 @@
-prefix=S:/Project/ATS Tracker/venv/Library
-exec_prefix=S:/Project/ATS Tracker/venv/Library
-libdir=S:/Project/ATS Tracker/venv/Library/lib
-sharedlibdir=S:/Project/ATS Tracker/venv/Library/lib
-includedir=S:/Project/ATS Tracker/venv/Library/include
+prefix=s:/Project/ATS Tracker/venv/Library
+exec_prefix=s:/Project/ATS Tracker/venv/Library
+libdir=s:/Project/ATS Tracker/venv/Library/lib
+sharedlibdir=s:/Project/ATS Tracker/venv/Library/lib
+includedir=s:/Project/ATS Tracker/venv/Library/include
 
 Name: zlib
 Description: zlib compression library

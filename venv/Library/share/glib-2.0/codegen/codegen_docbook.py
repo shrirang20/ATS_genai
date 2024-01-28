@@ -20,13 +20,10 @@
 # Author: David Zeuthen <davidz@redhat.com>
 
 import re
+import textwrap
 from os import path
 
 from . import utils
-
-
-# Disable line length warnings as wrapping the Docbook templates would be hard
-# flake8: noqa: E501
 
 
 # ----------------------------------------------------------------------------------------------------
@@ -344,10 +341,18 @@ class DocbookCodeGenerator:
         return s
 
     def expand_paras(self, s, expandParamsAndConstants):
-        s = self.expand(s, expandParamsAndConstants).strip()
-        if not s.startswith("<para"):
-            s = "<para>%s</para>" % s
-        return s
+        s = textwrap.dedent(self.expand(s, expandParamsAndConstants)).rstrip()
+        res = []
+        if not s.startswith("<para>"):
+            res.append("<para>")
+        for line in s.split("\n"):
+            line = line.rstrip()
+            if not line:
+                line = "</para><para>"
+            res.append(line)
+        if not s.endswith("</para>"):
+            res.append("</para>")
+        return "\n".join(res)
 
     def generate_expand_dicts(self):
         self.expand_member_dict = {}
