@@ -4,5 +4,5 @@ protobuf==4.25.2
 python-dotenv==1.0.1
 streamlit==1.30.0
 google-generativeai
-conda==23.11.0
+# conda==23.11.0
 poppler>=0.68.0,<24
