@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 
 load_dotenv()
+
 import base64
 import streamlit as st
 import os
@@ -9,8 +10,11 @@ from PIL import Image
 import pdf2image
 import google.generativeai as genai
 import sqlite3
+import logging
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 def get_gemini_response(input,pdf_content,prompt):
@@ -55,10 +59,12 @@ def input_pdf_setup(uploaded_file):
                 "data": base64.b64encode(img_byte_arr).decode()
             }
         ]
+        logging.debug(f"Poppler path: {poppler_path}")
         return pdf_parts
     else:
         raise FileNotFoundError("No file uploaded")
-    
+
+
 ## StreamLit App
     
 st.set_page_config(page_title='ATS Resume Evaluator')
