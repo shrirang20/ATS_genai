@@ -117,3 +117,18 @@ elif submit2:
     else:
         st.write("Please upload the Resume")
 
+
+
+google_analytic_code=""" 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-32PM6X2CNF');
+</script>
+"""
+
+st.markdown(google_analytic_code, unsafe_allow_html=True)
