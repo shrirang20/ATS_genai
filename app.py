@@ -4,7 +4,7 @@ load_dotenv()
 
 import base64
 import streamlit as st
-from streamlit.components.v1 import html
+# from streamlit.components.v1 import html
 import os
 import io
 from PIL import Image
