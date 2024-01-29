@@ -4,7 +4,7 @@ load_dotenv()
 
 import base64
 import streamlit as st
-from streamlit.components.v1 import html
+# from streamlit.components.v1 import html
 import os
 import io
 from PIL import Image
@@ -44,18 +44,7 @@ def input_pdf_setup(uploaded_file):
 ## StreamLit App
 
 # Set the page config with custom JavaScript code
-analytics = """
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-32PM6X2CNF');
-</script>
-"""
 
-html(analytics)
     
 
 st.header("ATS Tracking System")
@@ -120,3 +109,25 @@ elif submit2:
 # """
 
 # st.html(google_analytic_code, unsafe_allow_html=True)
+# analytics = """
+# <!-- Google tag (gtag.js) -->
+# <script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
+# <script>
+#   window.dataLayer = window.dataLayer || [];
+#   function gtag(){dataLayer.push(arguments);}
+#   gtag('js', new Date());
+#   gtag('config', 'G-32PM6X2CNF');
+# </script>
+# """
+
+# html(analytics)
+
+st.write("""
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-32PM6X2CNF');
+</script>
+""", unsafe_allow_html=True)
