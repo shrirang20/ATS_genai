@@ -10,42 +10,18 @@ from PIL import Image
 import pdf2image
 import google.generativeai as genai
 import sqlite3
-# import logging
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-
-# logging.basicConfig(level=logging.DEBUG)
-
 
 def get_gemini_response(input,pdf_content,prompt):
     model=genai.GenerativeModel('gemini-pro-vision')
     response=model.generate_content([input,pdf_content[0],prompt])
     return response.text
 
-def store_data(input_text, pdf_content):
-    conn = sqlite3.connect('S:\Project\ATS Tracker\resume_database.db')
-    cursor = conn.cursor()
-
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS resumes (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            input_text TEXT,
-            pdf_content TEXT
-        )
-    ''')
-
-    cursor.execute('''
-        INSERT INTO resumes (input_text, pdf_content)
-        VALUES (?, ?)
-    ''', (input_text, pdf_content))
-
-    conn.commit()
-    conn.close()
-
 def input_pdf_setup(uploaded_file):
     if uploaded_file is not None:
-        # poppler_path="./venv/Library/Library/bin" 
-        images=pdf2image.convert_from_bytes(uploaded_file.read(),)
+
+        images=pdf2image.convert_from_bytes(uploaded_file.read())
 
         first_page=images[0]
 
@@ -63,7 +39,6 @@ def input_pdf_setup(uploaded_file):
         return pdf_parts
     else:
         raise FileNotFoundError("No file uploaded")
-
 
 ## StreamLit App
     
@@ -99,7 +74,6 @@ top 5 things that candidate should add in his/her resume to get hired,
 and last the final thoughts. 
 """
 
-
 if submit1:
     if uploaded_file is not None:
         pdf_content=input_pdf_setup(uploaded_file)
@@ -117,9 +91,8 @@ elif submit2:
     else:
         st.write("Please upload the Resume")
 
-
-
 google_analytic_code=""" 
+<head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
 <script>
@@ -129,6 +102,7 @@ google_analytic_code="""
 
   gtag('config', 'G-32PM6X2CNF');
 </script>
+</head>
 """
 
 st.markdown(google_analytic_code, unsafe_allow_html=True)
