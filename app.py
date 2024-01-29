@@ -4,7 +4,7 @@ load_dotenv()
 
 import base64
 import streamlit as st
-from streamlit.components.v1 import html
+# from streamlit.components.v1 import html
 import os
 import io
 from PIL import Image
@@ -45,7 +45,7 @@ def input_pdf_setup(uploaded_file):
 
 # Set the page config with custom JavaScript code
 
-st.components.v1.html("google_analytics.html")  
+# st.components.v1.html("google_analytics.html") 
 
 st.header("ATS Tracking System")
 input_text=st.text_area("Job Descriptiion: ", key="input")
