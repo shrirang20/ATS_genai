@@ -9,7 +9,7 @@ import io
 from PIL import Image
 import pdf2image
 import google.generativeai as genai
-import sqlite3
+
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
@@ -41,6 +41,18 @@ def input_pdf_setup(uploaded_file):
         raise FileNotFoundError("No file uploaded")
 
 ## StreamLit App
+
+# Set the page config with custom JavaScript code
+st.set_page_config(page_title='ATS Resume Evaluator', on_page_load={"script": """
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-32PM6X2CNF');
+</script>
+"""})
     
 st.set_page_config(page_title='ATS Resume Evaluator')
 st.header("ATS Tracking System")
@@ -91,17 +103,17 @@ elif submit2:
     else:
         st.write("Please upload the Resume")
 
-google_analytic_code=""" 
-<head></head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+# google_analytic_code=""" 
+# <head></head>
+# <!-- Google tag (gtag.js) -->
+# <script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
+# <script>
+#   window.dataLayer = window.dataLayer || [];
+#   function gtag(){dataLayer.push(arguments);}
+#   gtag('js', new Date());
 
-  gtag('config', 'G-32PM6X2CNF');
-</script>
-"""
+#   gtag('config', 'G-32PM6X2CNF');
+# </script>
+# """
 
-st.html(google_analytic_code, unsafe_allow_html=True)
+# st.html(google_analytic_code, unsafe_allow_html=True)
