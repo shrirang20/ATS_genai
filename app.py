@@ -122,12 +122,12 @@ elif submit2:
 
 # html(analytics)
 
-st.write("""
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-32PM6X2CNF');
-</script>
-""", unsafe_allow_html=True)
+# st.write("""
+# <script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
+# <script>
+#   window.dataLayer = window.dataLayer || [];
+#   function gtag(){dataLayer.push(arguments);}
+#   gtag('js', new Date());
+#   gtag('config', 'G-32PM6X2CNF');
+# </script>
+# """, unsafe_allow_html=True)
