@@ -104,4 +104,4 @@ google_analytic_code="""
 </script>
 """
 
-st.markdown(google_analytic_code, unsafe_allow_html=True)
+st.html(google_analytic_code, unsafe_allow_html=True)
