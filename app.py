@@ -92,7 +92,7 @@ elif submit2:
         st.write("Please upload the Resume")
 
 google_analytic_code=""" 
-<head>
+<head></head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
 <script>
@@ -102,7 +102,6 @@ google_analytic_code="""
 
   gtag('config', 'G-32PM6X2CNF');
 </script>
-</head>
 """
 
 st.markdown(google_analytic_code, unsafe_allow_html=True)
