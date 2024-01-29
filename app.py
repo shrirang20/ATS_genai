@@ -4,6 +4,7 @@ load_dotenv()
 
 import base64
 import streamlit as st
+from streamlit.components.v1 import html
 import os
 import io
 from PIL import Image
@@ -43,7 +44,7 @@ def input_pdf_setup(uploaded_file):
 ## StreamLit App
 
 # Set the page config with custom JavaScript code
-st.set_page_config(page_title='ATS Resume Evaluator', on_page_load={"script": """
+analytics = """
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-32PM6X2CNF"></script>
 <script>
@@ -52,7 +53,9 @@ st.set_page_config(page_title='ATS Resume Evaluator', on_page_load={"script": ""
   gtag('js', new Date());
   gtag('config', 'G-32PM6X2CNF');
 </script>
-"""})
+"""
+
+html(analytics)
     
 st.set_page_config(page_title='ATS Resume Evaluator')
 st.header("ATS Tracking System")
