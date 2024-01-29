@@ -57,7 +57,7 @@ analytics = """
 
 html(analytics)
     
-st.set_page_config(page_title='ATS Resume Evaluator')
+
 st.header("ATS Tracking System")
 input_text=st.text_area("Job Descriptiion: ", key="input")
 uploaded_file=st.file_uploader("Upload your Resume (in PDF)", type=["pdf"])
