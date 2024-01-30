@@ -82,7 +82,7 @@ Then List the skills and how much relavant they are with Job description,
 then point out the specifics words/lines/section/placing from the resume to change (if any), then
 top 5 things that candidate should add in his/her resume to get hired, then
 5 job description domain related projects to add to resume that might make candidate stand out 
-and last the final thoughts. 
+and last the final thoughts.
 
 Also don't give generic results, the result should be strictly in correlation with the {input_text} and {uploaded_file}
 """
