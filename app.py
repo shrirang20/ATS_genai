@@ -17,6 +17,8 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 def get_gemini_response(option,input,pdf_content,prompt):
     model=genai.GenerativeModel('gemini-pro-vision')
     response=model.generate_content([option,input,pdf_content[0],prompt])
+
+    print(response)
     return response.text
 
 def input_pdf_setup(uploaded_file):
@@ -43,12 +45,13 @@ def input_pdf_setup(uploaded_file):
 ## StreamLit App
 
 st.header("ATS Tracking System")
-option = st.selectbox(
-    'Select the Job profile ou are applying for...',
-    ("Data Science", "Full Stack Web Development", "Big Data Engineering", "DEVOPS", "Data Analyst", "Data Visualisation"), 
-    index=None,
-    placeholder="Select Job profile..."
-     )
+# option = st.selectbox(
+#     'Select the Job profile ou are applying for...',
+#     ("Data Science", "Full Stack Web Development", "Big Data Engineering", "DEVOPS", "Data Analyst", "Data Visualisation"), 
+#     index=None,
+#     placeholder="Select Job profile..."
+#      )
+option = st.text_input("Job Profile:", key="profile")
 st.write('You are applying for', option, 'role')
 input_text=st.text_area("Job Descriptiion: ", key="input")
 uploaded_file=st.file_uploader("Upload your Resume (in PDF)", type=["pdf"])
