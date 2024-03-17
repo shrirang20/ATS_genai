@@ -17,8 +17,7 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 def get_gemini_response(option,input,pdf_content,prompt):
     model=genai.GenerativeModel('gemini-pro-vision')
     response=model.generate_content([option,input,pdf_content[0],prompt])
-
-    print(response)
+    # print("Reponse Text:", response.text)
     return response.text
 
 def input_pdf_setup(uploaded_file):
@@ -38,6 +37,7 @@ def input_pdf_setup(uploaded_file):
                 "data": base64.b64encode(img_byte_arr).decode()
             }
         ]
+        # print('img_byte_arr:',img_byte_arr)
         return pdf_parts
     else:
         raise FileNotFoundError("No file uploaded")
@@ -87,7 +87,10 @@ top 5 things that candidate should add in his/her resume to get hired, then
 5 job description domain related projects to add to resume that might make candidate stand out 
 and last the final thoughts.
 
-Also don't give generic results, the result should be strictly in correlation with the {input_text} and {uploaded_file}
+At the end if the candidate's {uploaded_file} is fit to apply for the {input_text} or not and 
+whether the candidate should apply for the {input_text}, and don't be diplomatic.
+
+Also don't give generic  results, the result should be strictly in correlation with the {input_text} and {uploaded_file}
 """
 
 if submit1 :
