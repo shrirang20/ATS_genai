@@ -43,7 +43,7 @@ def input_pdf_setup(uploaded_file):
         raise FileNotFoundError("No file uploaded")
 
 ## StreamLit App
-
+st.set_page_config(page_title="ATS Tracking System")
 st.header("ATS Tracking System")
 # option = st.selectbox(
 #     'Select the Job profile ou are applying for...',
